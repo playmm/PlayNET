@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html lang="en-us" 
+style="height:100%;" dir="ltr">
+  <head>
+  </head>
+  <body class="demo-disable-bg-image">
+    <div id="sampleDemo" style="" class="demo-padding demo-container">
+      <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+        <oj-list-view id="listview" aria-label="list using json data" 
+               data="[[dataSource]]" selection-mode="single" item.focusable="[[itemOnly]]" item.selectable="[[itemOnly]]" drill-mode="none">
+            <template slot="itemTemplate">
+                <!-- template for items -->
+                <oj-bind-if test="[[$current.leaf]]">
+                    <div class="oj-flex" style="flex-wrap: nowrap">
+
+                        <span class="oj-flex-item" data-bind="style: { backgroundImage: 'url(\'images/listView/' + $current.data.type + '.png\')', 
+                         backgroundRepeat: 'no-repeat', backgroundSize: '40px 40px', minHeight: '40px', minWidth: '40px', maxWidth: '40px' }, attr: { 'aria-label': $current.data.type }">
+
+                        </span>
+                       <div class="oj-flex-item demo-content">
+
+                            <div>
+
+                                <span><oj-bind-text value="[[$current.data.name]]"></oj-bind-text></span>
+
+                            </div>
+
+                            <div>
+                                <span class="oj-text-xs oj-text-secondary-color">Last modified on<oj-bind-text value="[[$current.data.modified]]"></oj-bind-text></span>
+                            </div>
+                        </div>
+                    </div>
+                </oj-bind-if>
+                <!-- template for groups -->
+                <oj-bind-if test="[[!$current.leaf]]">
+                    <span><oj-bind-text value="[[$current.data.name]]"></oj-bind-text></span>
+                </oj-bind-if>
+            </template>       
+        </oj-list-view>
+      </div>
+    </div>
+  </body>
+</html>
